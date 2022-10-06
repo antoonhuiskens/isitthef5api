@@ -1,8 +1,7 @@
 from bs4 import BeautifulSoup
-from flask import Flask, json
+from flask import Flask, jsonify
 
 import requests
-
 
 app = Flask(__name__)
 
@@ -12,5 +11,4 @@ def is_it_the_f5():
     s = BeautifulSoup(g.text, features="html.parser")
     r = dict()
     r['blame_f5']= s.html.body.get_text()
-    print(r)
-    return json.dumps(r)
+    return jsonify(r)
